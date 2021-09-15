@@ -3,12 +3,15 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    if params[:q] 
+      @posts = Post.where('title = ?', params[:q]).or(Post.where('content = ?',params[:q]))
+    else 
+      @posts = Post.all
+    end
   end
 
   # GET /posts/1 or /posts/1.json
   def show
-    
   end
 
   # GET /posts/new
@@ -64,7 +67,7 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :content)
+      params.require(:post).permit(:title, :content, :q)
     end
 
 end

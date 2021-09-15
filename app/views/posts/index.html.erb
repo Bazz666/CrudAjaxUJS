@@ -1,10 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Posts Js</h1>
-<div id="showData"></div>
-<h1>Posts</h1>
 
-<table>
+
+<h1 class= 'my-3 display-3' >Posts</h1>
+<h4 class= 'my-2'>Search Post</h4>
+<%= render('posts/search') %>
+
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Title</th>
@@ -12,21 +14,19 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= post.content %></td>
-        <td><%= link_to 'Show', post , remote: true %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  
+  <tbody id="data">
+      <%= render('posts/data') %>
   </tbody>
 </table>
 
+<button type="button" class="btn btn-success my-2"><%= link_to 'New Post', new_post_path, remote: true %></button>
+<div id='newPost'></div>
+
 <br>
 
+<h1 class="display-4">Show Posts Js ↓</h1>
+<div id="showData"></div>
 
-<button type="button" class="btn btn-success"><%= link_to 'New Post', new_post_path %></button>
+
+
