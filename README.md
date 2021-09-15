@@ -6,4 +6,4 @@ Things you may want to cover:
 
 * Rails version 5.2.6
 
-* Heroku Link =>  
+* Heroku Link =>  https://dry-savannah-93655.herokuapp.com/
