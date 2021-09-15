@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     if params[:q] 
-      @posts = Post.where('title = ?', params[:q]).or(Post.where('content = ?',params[:q]))
+      @posts = Post.where('title = ?',"%#{params[:q]}%").or(Post.where('content = ?',"%#{params[:search]}%"))
     else 
       @posts = Post.all
     end
