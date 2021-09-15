@@ -4,7 +4,10 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     if params[:q] 
-      @posts = Post.where('title = ?',"%#{params[:q]}%").or(Post.where('content = ?',"%#{params[:search]}%"))
+      @posts = Post.where('title LIKE ?', "%#{params[:q]}%").or(Post.where('content LIKE ?', "%#{params[:q]}%"))
+      respond_to do |format|
+        format.js
+      end
     else 
       @posts = Post.all
     end
@@ -67,7 +70,7 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :content, :q)
+      params.require(:post).permit(:title, :content)
     end
 
 end

@@ -1,4 +1,6 @@
-<%= form_with url:'',local: false, method: :get do |f|  %>
-<%= f.text_field :q %>
-<%= f.submit "Submit", disable_with: 'Submiting...', remote: false %>
-<% end  %>
+<div class="float-left">
+    <%= form_tag(posts_path, method: "get", remote: true, :class => "form-inline") do  %>
+        <%= text_field_tag :q, params[:q], placeholder:"Search a Post", :class =>"form-control" %>
+        <%= submit_tag "Buscar", class:"btn btn-primary"%>
+    <% end %>
+</div>
